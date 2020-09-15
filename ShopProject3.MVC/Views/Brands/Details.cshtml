@@ -1,0 +1,50 @@
+﻿@model Brands
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div> <h1>@ViewData["Title"]  @Model.Title</h1></div>
+                @if (Model.Products != null && Model.Products.Count > 0)
+                {
+                <div class="row">
+                    @foreach (var item in ViewBag.products)
+                    {
+                        <div class="col">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top" src="https://via.placeholder.com/300" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text"><a asp-controller="products" asp-action="details" asp-route-id="@item.Id">@item.Title</a></p>
+                                    <p class="card-text"><a asp-controller="brands" asp-action="details" asp-route-id="@item.BrandId">@item.Brand.Title</a></p>
+                                    <p class="card-text">@item.Price.ToString("C")</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@item.Id" asp-route-p="1"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                }
+
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-light" asp-controller="Home" asp-action="Index">Back</a>
+    </div>
+
+</div>
+
+
+

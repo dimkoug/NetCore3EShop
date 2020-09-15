@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Products>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Products List";
+    ViewData["Create"] = "Create";
+    
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <a asp-action="Create" class="float-right"><i class="fa fa-plus fa-lg text-primary" aria-hidden="true"></i></a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <form method="get" class="container border text-left pt-2 mb-3">
+            <div class="form-row form-group">
+                <div class="col">
+                    <label>Total number of items</label>
+                    <select name="totalItems" asp-items="@ViewBag.TotalItemsList" class="form-control form-control-sm" onchange="this.form.submit()"></select>
+                </div>
+                <div class="col">
+                    <label>Items per page</label>
+                    <select name="pageSize" asp-items="@ViewBag.PageSizeList" class="form-control form-control-sm" onchange="this.form.submit()"></select>
+                </div>
+                <div class="col">
+                    <label>Max page links displayed</label>
+                    <select name="maxPages" asp-items="@ViewBag.MaxPagesList" class="form-control form-control-sm" onchange="this.form.submit()"></select>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Parent)</th>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Parent.Title)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" ><i class="fa fa-info fa-lg text-primary" aria-hidden="true"></i></a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" ><i class="fa fa-pencil-square-o fa-lg text-warning" aria-hidden="true"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" ><i class="fa fa-times fa-lg text-danger" aria-hidden="true"></i></a>
+                        <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@item.Id"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<partial name="_PaginationPartial" model="Model" view-data="ViewData" />

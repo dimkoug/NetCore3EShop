@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopProject3.DataAccess\ShopProject3.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="cloudscribe.Pagination.Models" Version="1.1.0" />
+    <PackageReference Include="cloudscribe.Web.Pagination" Version="3.1.0" />
+    <PackageReference Include="JW.Pager" Version="1.0.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
+    <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>

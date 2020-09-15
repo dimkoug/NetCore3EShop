@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Features>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Features List";
+    ViewData["Create"] = "Create";
+    
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <a asp-action="Create" class="float-right"><i class="fa fa-plus fa-lg text-primary" aria-hidden="true"></i></a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Id)</th>
+                    <th>@Html.DisplayNameFor(model => model.Title)</th>
+                    <th>Number of feature attributes</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                    <td><span class="badge badge-light">@item.FeatureAttributes.Count</span></td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info fa-lg text-primary" aria-hidden="true"></i></a>
+                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-square-o fa-lg text-warning" aria-hidden="true"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-times fa-lg text-danger" aria-hidden="true"></i></a>
+                        <a asp-controller="FeatureAttributes" asp-action="Create" asp-route-featureId="@item.Id">Add feature attribute</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+﻿@model ProductFeatureAttributes
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+@{
+    ViewData["Title"] = "Add Product Feature Attribute";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+</div>
+
+<form asp-action="AddProductFeatureAttribute">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <input type="hidden" asp-for="ProductId">
+                <input type="hidden" asp-for="FeatureAttributeId">
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label  class="control-label">Categories</label>
+                <select name="category" id="category" asp-items="@ViewBag.Categories" class="form-control">
+                    <option value="">Select</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label  class="control-label">Features</label>
+                <select name="feature" id="feature" asp-items="@ViewBag.Features" class="form-control">
+                    <option value="">Select</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="control-label">Attributes</label>
+                <select id="attribute" asp-items="@ViewBag.Attributes" class="form-control">
+                    <option value="">Select</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <input class="btn btn-primary float-right" type="submit" value="Save" />
+            <a class="btn btn-light" asp-action="Index">Back</a>
+        </div>
+    </div>
+</form>
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $("body").on('change', '#category', function () {
+            $("#feature").html("");
+            $("#attribute").html("");
+            var id = $(this).val();
+            $.ajax({
+                url: '/products/getFeature',
+                data: { id: id },
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    console.info(data);
+                    var s = '<option value="-1">Please Select a Feature</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].id + '">' + data[i].title + '</option>';
+                    }
+                    $("#feature").html(s);
+                }
+            });
+        });
+
+        $("body").on('change', '#feature', function () {
+            var id = $(this).val();
+            $("#attribute").html("");
+            $.ajax({
+                url: '/products/getFeatureAttribute',
+                data: { id: id },
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    console.info(data);
+                    var s = '<option value="-1">Please Select a Feature Attribute</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].id + '">' + data[i].title + '</option>';
+                    }
+                    $("#attribute").html(s);
+                }
+            });
+        });
+
+        $("body").on('change', '#attribute', function () {
+            var id = $(this).val();
+            console.info(id);
+            $("#FeatureAttributeId").val(id);
+        });
+    })
+
+</script>
+
+
+    }

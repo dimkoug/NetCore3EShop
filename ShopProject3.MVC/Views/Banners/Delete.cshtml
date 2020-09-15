@@ -1,0 +1,29 @@
+﻿@model Banners
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+</div>
+
+<h3>Delete;</h3>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BannerImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BannerImagePath)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a class="btn btn-light" asp-action="Index">Back</a>
+    </form>
+</div>
