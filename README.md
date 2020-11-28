@@ -19,5 +19,5 @@ Net.Core    E-shop  Mvc  web application
 
 # Todo
 
-1. A lot of frontent staff
+1. A lot of frontennd staff
 2. Add pagination
