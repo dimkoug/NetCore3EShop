@@ -1,5 +1,5 @@
-# NetCore3EShop
-Net.Core    E-shop  Mvc  web application 
+# Net Core E-Shop
+Net.Core E-shop  Mvc web application 
 
 # This project contains
 
