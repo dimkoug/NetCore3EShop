@@ -1,0 +1,48 @@
+﻿@model EventLocation
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_CmsLayout";
+    ViewData["Title"] = "Event Location Edit";
+}
+
+<div class="row">
+    <div class="col">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-check">
+                        <input asp-for="Published" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">@Html.DisplayNameFor(model => model.Published)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-check">
+                        <input asp-for="Deleted" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">@Html.DisplayNameFor(model => model.Deleted)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <a asp-action="delete" asp-route-id="Id" class="btn btn-danger">Delete</a>
+                    <input type="submit" name="new" class="btn btn-primary" value="Save and add New" />
+                    <input type="submit" class="btn btn-primary" name="continue" value="Save and continue editing" />
+                    <input type="submit" class="btn btn-primary" value="Save" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

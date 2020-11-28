@@ -1,0 +1,98 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <h1>@Model.Title</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="float-right">
+            <div>@Model.Price.ToString("C")</div>
+            <div><a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.Id" asp-route-p="1"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></div>
+        </div>
+    </div>
+</div>
+<hr />
+
+
+<div class="row">
+    <div class="col-12">
+        @if (Model.ProductAttributes != null && Model.ProductAttributes.Count > 0)
+        {
+            <div> Featured</div>
+            @foreach (var item in Model.ProductAttributes)
+            {
+                <div><strong>@item.FeatureAttributes.Feature.Title:</strong>@item.FeatureAttributes.Title</div>
+                <hr />
+            }
+
+        }
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-12">
+
+        @if (Model.ProductMediaList != null && Model.ProductMediaList.Count > 0)
+        {
+            <div class="cycle-slideshow">
+                @foreach (var item in Model.ProductMediaList)
+                {
+                    <img src="~/uploaded_files/@item.Media.MediaPath" style="width:100%;" />
+                }
+            </div>
+
+        }
+
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-12">
+        @if (Model.Children != null && Model.Children.Count > 0)
+        {
+            <div>Related products</div>
+            @foreach (var item in Model.Children)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" src="https://via.placeholder.com/300" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text"><a asp-controller="products" asp-action="details" asp-route-id="@item.Id">@item.Title</a></p>
+                            <p class="card-text"><a asp-controller="brands" asp-action="details" asp-route-id="@item.BrandId">@item.Brand.Title</a></p>
+                            <p class="card-text">@item.Price.ToString("C")</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@item.Id" asp-route-p="1"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        }
+
+
+
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <a class="btn btn-light" asp-controller="Home" asp-action="Index">Back</a>
+    </div>
+
+</div>
+
+
+

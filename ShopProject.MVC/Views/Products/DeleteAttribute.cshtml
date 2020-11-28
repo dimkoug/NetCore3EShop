@@ -1,0 +1,31 @@
+﻿@model ProductAttribute
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_CmsLayout";
+}
+
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Products)
+        </d
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Products)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FeatureAttributes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FeatureAttributes)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteAttribute">
+        <input type="hidden" asp-for="FeatureAttributesId" />
+        <input type="hidden" asp-for="ProductsId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a class="btn btn-light" asp-action="Index">Back</a>
+    </form>
+</div>

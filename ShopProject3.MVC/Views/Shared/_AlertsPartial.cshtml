@@ -1,9 +1,0 @@
-﻿@{
-    if (TempData.ContainsKey("Key"))
-    {
-        <div class="alert alert-@TempData["Key"]">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            @Html.Raw(TempData["Message"])
-        </div>
-    }
-}

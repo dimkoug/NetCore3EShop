@@ -1,0 +1,92 @@
+﻿@model Event
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_CmsLayout";
+    ViewData["Title"] = "Event Create";
+}
+
+
+<div class="row">
+    <div class="col">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="EventLocationId" class="control-label"></label>
+                    <select asp-for="EventLocationId" asp-items="@ViewBag.EventLocations" class="form-control">
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="EventLocationId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="StartDate"></label>
+                    <input asp-for="StartDate" class="form-control" type="text">
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="EndDate"></label>
+                    <input asp-for="EndDate" class="form-control" type="text">
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="EventTags"></label>
+                    <select asp-for="EventTags" asp-items="@ViewBag.SelectedTags" class="form-control">
+                    </select>
+                    <span asp-validation-for="EventTags" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label asp-for="files"></label>
+                    <input asp-for="files" class="form-control">
+                    <span asp-validation-for="files" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-check">
+                        <input asp-for="Published" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">@Html.DisplayNameFor(model => model.Published)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-check">
+                        <input asp-for="Deleted" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">@Html.DisplayNameFor(model => model.Deleted)</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <input type="submit" class="btn btn-primary" name="new" value="Save and add New" />
+                    <input type="submit" class="btn btn-primary" name="continue" value="Save and continue editing" />
+                    <input type="submit" class="btn btn-primary" value="Save" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

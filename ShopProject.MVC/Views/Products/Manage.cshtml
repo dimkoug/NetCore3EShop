@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Product>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_CmsLayout";
+    ViewData["Title"] = "Product List";
+}
+
+
+<div class="row">
+    <div class="col">
+        <a asp-action="create" class="btn btn-primary float-right">Add</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table table bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model=>model.Title)</th>
+                    <th>@Html.DisplayNameFor(model=>model.Parent)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Parent.Title)</td>
+                        <td>
+                            <a asp-action="details" asp-route-Id="@item.Id" class="btn btn-primary" >Details</a>
+                            <a asp-action="edit" asp-route-id="@item.Id" class="btn btn-warning" >Edit</a>
+                            <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger" >Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
