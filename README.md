@@ -1,5 +1,7 @@
-# Net Core E-Shop
-Net.Core E-shop  Mvc web application 
+# .Net Core E-Shop
+.Net Core E-shop  Mvc web application 
+
+Updated to .net 5 
 
 # This project contains
 
