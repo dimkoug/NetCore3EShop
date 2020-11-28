@@ -21,5 +21,5 @@ Updated to .net 5
 
 # Todo
 
-1. A lot of frontennd staff
+1. A lot of frontend staff
 2. Add pagination
