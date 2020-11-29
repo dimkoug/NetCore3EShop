@@ -27,9 +27,10 @@ namespace ShopProject.MVC.Controllers
             _shopCategoryFeatureService = shopCategoryFeatureService ?? throw new ArgumentNullException(nameof(shopCategoryFeatureService));
         }
 
-        public async Task<IActionResult> Index(string? q, List<string> SelectedItems)
+        public async Task<IActionResult> Index(string? q, List<string> SelectedItems, int? pageNumber)
         {
 
+            int pageSize = 6;
             var categories = await _shopCategoryService.GetAll();
             var products = await _productService.GetAll();
             ViewBag.Features = (await _shopCategoryFeatureService.GetAll()).DistinctBy(c=>c.ProductFeature).ToList();
@@ -41,13 +42,16 @@ namespace ShopProject.MVC.Controllers
             {
                 products = products.Where(c => c.ProductAttributes.Any(c=>SelectedItems.Contains(c.FeatureAttributes.Title))).ToList();
             }
+            
+            var data = await PaginatedList<Product>.CreateAsync(products.ToList(), pageNumber ?? 1, pageSize);
 
 
-            ViewBag.products = products;
+            
+            ViewBag.products = data;
             ViewBag.categories = categories.Where(c => c.Parent == null).ToList();
             ViewBag.q = q;
             ViewBag.SelectedItems = SelectedItems.ToList();
-            return View();
+            return View(data);
         }
 
         public IActionResult Privacy()

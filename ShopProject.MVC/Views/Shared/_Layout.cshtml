@@ -19,9 +19,10 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <partial name="_LoginPartial" />
+
 
                         <ul class="navbar-nav flex-grow-1">
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
@@ -34,6 +35,7 @@
                             @await Component.InvokeAsync("ShoppingCartSummary")
                         </ul>
                     </div>
+                    <partial name="_LoginPartial" />
                 </div>
             </nav>
         </header>
@@ -57,7 +59,7 @@
 
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="">
+                                            <div style="padding-left:0.8rem;">
                                                 @child.Title
                                             </div>
                                             @if (child.Children.Count > 0)
@@ -67,7 +69,7 @@
                                                 {
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <div><a asp-controller="shopcategories" asp-action="details" asp-route-id="@level3.Id">@level3.Title</a></div>
+                                                            <div><a asp-controller="shopcategories" asp-action="details" asp-route-id="@level3.Id" style="display:inline-block;padding-left:1.2rem;">@level3.Title</a></div>
                                                         </div>
                                                     </div>
                                                 }
